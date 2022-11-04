@@ -19,11 +19,13 @@ contract StudentSocietyDAO {
         uint256 startTime; // proposal start time
         uint256 duration;  // proposal duration
         string name;       // proposal name
-        // ...
-        // TODO add any member if you want
+       
+        bool success; //提案是否通过
     }
 
     ERC20 studentERC20;
+
+    uint32 public numProposals;  //num of proposals 
     mapping(uint32 => Proposal) proposals; // A map from proposal index to proposal
     // ...
     // TODO add any variables if you want
@@ -39,4 +41,24 @@ contract StudentSocietyDAO {
 
     // ...
     // TODO add any logic if you want
+
+    /**
+    * 发起提案
+    * @param proposer 发起人
+    * @param name 提案标题
+    * @param duration 持续时间
+    * @param startTime 开始时间
+    */
+    function newFunding(address payable proposer, string memory name, uint256 duration, uint256 startTime) public returns(uint) {
+        require(startTime > block.timestamp);
+
+        numProposals = numProposals + 1;
+        Proposal storage p = proposals[numProposals];
+        p.proposer = proposer;
+        p.name = name;
+        p.duration = duration;
+        p.startTime = startTime;
+    
+        return numProposals;
+    }
 }
