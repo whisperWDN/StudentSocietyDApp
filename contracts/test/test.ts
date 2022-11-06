@@ -12,15 +12,15 @@ describe("Test", function () {
     const [owner, otherAccount] = await ethers.getSigners();
 
     const StudentSocietyDAO = await ethers.getContractFactory("StudentSocietyDAO");
-    const studentSocietyDAO = await StudentSocietyDAO.deploy();
+    const studentSocietyDAO = await StudentSocietyDAO.deploy(3,10,20,100);
 
     return { studentSocietyDAO, owner, otherAccount };
   }
 
-  describe("Deployment", function () {
-    it("Should return hello world", async function () {
-      const { studentSocietyDAO } = await loadFixture(deployFixture);
-      expect(await studentSocietyDAO.helloworld()).to.equal("hello world");
-    });
-  });
+  // describe("Deployment", function () {
+  //   it("Should return hello world", async function () {
+  //     const { studentSocietyDAO } = await loadFixture(deployFixture);
+  //     expect(await studentSocietyDAO.helloworld()).to.equal("hello world");
+  //   });
+  // });
 });

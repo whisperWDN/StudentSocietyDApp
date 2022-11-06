@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 async function main() {
   const StudentSocietyDAO = await ethers.getContractFactory("StudentSocietyDAO");
-  const studentSocietyDAO = await StudentSocietyDAO.deploy();
+  const studentSocietyDAO = await StudentSocietyDAO.deploy(3,10,20,100);
   await studentSocietyDAO.deployed();
 
   console.log(`StudentSocietyDAO deployed to ${studentSocietyDAO.address}`);
